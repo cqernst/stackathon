@@ -40,9 +40,9 @@ class AuthLogin extends React.Component {
 
 componentDidUpdate() {
   if(this.props.user.email){
-    alert('got into logn componentdidupdate');
 
-    const PUSH_ENDPOINT = 'http://192.168.1.179:8080/api/users/2/push-token';
+    const PUSH_ENDPOINT = 'http://172.16.25.113:8080/api/users/2/push-token'
+    // 'http://192.168.1.179:8080/api/users/2/push-token';
 
     async function registerForPushNotificationsAsync() {
       const { status: existingStatus } = await Permissions.getAsync(
@@ -71,7 +71,7 @@ componentDidUpdate() {
       // POST the token to your backend server from where you can retrieve it to send push notifications.
       return axios.put(PUSH_ENDPOINT, {pushToken: String(pushToken)})
             // .then(res => dispatch(updateSpaceship(res.data)))
-            .then(res => alert(res.data.email))
+            .then(res => console.log(res.data.email))
             .catch(err => console.error(`FAILED`, err))
     };
     this.props.navigation.navigate('UserHome')

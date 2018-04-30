@@ -31,7 +31,7 @@ const removeUser = () => ({type: REMOVE_USER})
 
 export const auth = (email, password) =>
   dispatch =>
-    axios.post('http://192.168.1.179:8080/auth/login', { email, password })
+    axios.post('http://172.16.25.113:8080/auth/login', { email, password })
       .then(res => {
         dispatch(getUser(res.data))
         //DO SOMETHING DIFFERENT TO REDIRECT
@@ -43,7 +43,7 @@ export const auth = (email, password) =>
 
 export const newUser = (email, password, streetAddress, municipality, state, zip) =>
   dispatch =>
-    axios.post('http://192.168.1.179:8080/auth/signup', { email, password, streetAddress, municipality, state, zip })
+    axios.post('http://172.16.25.113:8080/auth/signup', { email, password, streetAddress, municipality, state, zip })
       .then(res => {
         dispatch(getUser(res.data))
         //DO SOMETHING DIFFERENT TO REDIRECT
@@ -55,7 +55,7 @@ export const newUser = (email, password, streetAddress, municipality, state, zip
 
 export const logout = () =>
   dispatch =>
-    axios.post('http://192.168.1.179:8080/auth/logout')
+    axios.post('http://172.16.25.113:8080/auth/logout')
       .then(_ => {
         dispatch(removeUser())
       })

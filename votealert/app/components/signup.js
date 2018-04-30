@@ -65,7 +65,6 @@ class signUpForm extends React.Component {
     this.setState({error:'', loading:true});
     const {email, password, streetAddress, municipality, state, zip} = this.state;
 
-    alert(municipality)
     store.dispatch(newUser(this.state.email, 
       this.state.password, 
       this.state.streetAddress,
