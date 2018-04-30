@@ -41,6 +41,18 @@ export const auth = (email, password) =>
       //DO SOMETHING DIFFERENT WITH HISTORY?
       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
 
+export const newUser = (email, password, streetAddress, municipality, state, zip) =>
+  dispatch =>
+    axios.post('http://192.168.1.179:8080/auth/signup', { email, password, streetAddress, municipality, state, zip })
+      .then(res => {
+        dispatch(getUser(res.data))
+        //DO SOMETHING DIFFERENT TO REDIRECT
+      }, authError => { // rare example: a good use case for parallel (non-catch) error handler
+        dispatch(getUser({error: authError}));
+      })
+      //DO SOMETHING DIFFERENT WITH HISTORY?
+      .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
+
 export const logout = () =>
   dispatch =>
     axios.post('http://192.168.1.179:8080/auth/logout')
